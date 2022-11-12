@@ -1,6 +1,5 @@
 package clientes;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -10,17 +9,19 @@ public class Cliente {
     private String apellidos;
     private Date fecha;
     private char sexo;
+    private String telefono;
     private String nombreContacto;
     private String telefonoContacto;
     private String correoElectronico;
     private String direccion;
 
-    public Cliente(String cedula, String nombres, String apellidos, SimpleDateFormat fecha, char sexo, String nombreContacto, String telefonoContacto, String correoElectronico, String direccion) {
+    public Cliente(String cedula, String nombres, String apellidos, Date fecha, char sexo, String telefono, String nombreContacto, String telefonoContacto, String correoElectronico, String direccion) {
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
-        this.fecha = new Date();
+        this.fecha = fecha;
         this.sexo = sexo;
+        this.telefono = telefono;
         this.nombreContacto = nombreContacto;
         this.telefonoContacto = telefonoContacto;
         this.correoElectronico = correoElectronico;
@@ -67,6 +68,14 @@ public class Cliente {
         this.sexo = sexo;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public String getNombreContacto() {
         return nombreContacto;
     }
@@ -98,5 +107,4 @@ public class Cliente {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
 }
