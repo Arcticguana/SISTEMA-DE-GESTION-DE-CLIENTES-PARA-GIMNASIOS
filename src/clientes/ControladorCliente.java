@@ -3,12 +3,10 @@ package clientes;
 import basededatos.ConexionBaseDatos;
 import basededatos.SQLTable;
 
-import javax.management.PersistentMBean;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
+
 
 public class ControladorCliente {
     //a
