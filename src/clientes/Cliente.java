@@ -108,17 +108,17 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "cedula='" + cedula + '\'' +
-                ", nombres='" + nombres + '\'' +
-                ", apellidos='" + apellidos + '\'' +
-                ", fecha=" + fecha +
-                ", sexo=" + sexo +
-                ", telefono='" + telefono + '\'' +
-                ", nombreContacto='" + nombreContacto + '\'' +
-                ", telefonoContacto='" + telefonoContacto + '\'' +
-                ", correoElectronico='" + correoElectronico + '\'' +
-                ", direccion='" + direccion + '\'' +
+        return "Cliente{\n" +
+                "   cedula='" + cedula + "'\n" +
+                "   nombres='" + nombres + "'\n" +
+                "   apellidos='" + apellidos + "'\n" +
+                "   fecha=" + fecha + "\n" +
+                "   sexo=" + sexo + "'\n" +
+                "   telefono='" + telefono + "'\n" +
+                "   nombreContacto='" + nombreContacto + "'\n" +
+                "   telefonoContacto='" + telefonoContacto + "'\n" +
+                "   correoElectronico='" + correoElectronico + "'\n" +
+                "   direccion='" + direccion + "'\n" +
                 '}';
     }
 }

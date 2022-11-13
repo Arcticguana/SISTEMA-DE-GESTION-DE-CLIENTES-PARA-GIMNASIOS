@@ -17,7 +17,6 @@ public class ConexionBaseDatos {
      * @throws SQLException
      */
     public SQLTable realizarConsulta(String consulta) throws SQLException{
-
         Connection connection = DriverManager.getConnection(this.cadenaConexion);
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(consulta);
