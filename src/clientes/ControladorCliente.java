@@ -44,7 +44,7 @@ public class ControladorCliente {
 
     public Cliente consultarCliente(String cedula){
         try{
-            SQLTable resultado=conexion.realizarConsulta("select * from clientes where cedula="+cedula);
+            SQLTable resultado = conexion.realizarConsulta("select * from clientes where cedula="+cedula);
             String nombres = resultado.getValueAt(0,"nombres");
             String apellidos = resultado.getValueAt(0,"apellidos");
             LocalDate fecha = LocalDate.parse(resultado.getValueAt(0,"fecha_nacimiento"), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
@@ -60,7 +60,6 @@ public class ControladorCliente {
             return cliente;
 
         }catch (Exception ex){
-            System.out.println(ex.getMessage());
             return null;
         }
     }
