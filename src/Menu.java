@@ -50,13 +50,13 @@ public class Menu {
         String cedula = leerEntrada("Cédula >>> ");
         String nombres = leerEntrada("Nombres >>> ");
         String apellidos = leerEntrada("Apellidos >>> ");
-        String fecha = leerEntrada("Fecha de nacimiento >>> ");
+        String fecha = leerEntrada("Fecha de nacimiento (dd-mm-aaaa)>>> ");
         String sexo = leerEntrada("Sexo (M o F) >>> ");
         String telefono = leerEntrada("Teléfono >>> ");
-        String nombreContacto = leerEntrada("Nombre de contacto >>> ");
-        String telefonoContacto = leerEntrada("Teléfono de contacto >>> ");
         String correoElectronico = leerEntrada("Correo electrónico >>> ");
         String direccion = leerEntrada("Dirección >>> ");
+        String nombreContacto = leerEntrada("Nombre de contacto >>> ");
+        String telefonoContacto = leerEntrada("Teléfono de contacto >>> ");
         Cliente cliente = new Cliente(
                 cedula,
                 nombres,
