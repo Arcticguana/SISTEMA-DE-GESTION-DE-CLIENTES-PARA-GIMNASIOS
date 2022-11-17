@@ -47,7 +47,8 @@ public class ControladorCliente {
             SQLTable resultado = conexion.realizarConsulta("select * from clientes where cedula="+cedula);
             String nombres = resultado.getValueAt(0,"nombres");
             String apellidos = resultado.getValueAt(0,"apellidos");
-            LocalDate fecha = LocalDate.parse(resultado.getValueAt(0,"fecha_nacimiento"), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            LocalDate fecha = LocalDate.parse(resultado.getValueAt(0,"fecha_nacimiento"),
+                    DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             char sexo = resultado.getValueAt(0,"sexo").charAt(0);
             String telefono = resultado.getValueAt(0,"telefono");
             String nombreContacto = resultado.getValueAt(0,"nombre_contacto");
@@ -55,10 +56,8 @@ public class ControladorCliente {
             String correoElectronico = resultado.getValueAt(0,"correo_electronico");
             String direccion = resultado.getValueAt(0,"direccion");
 
-            Cliente cliente = new Cliente(cedula,nombres,apellidos,fecha,sexo,telefono,nombreContacto,telefonoContacto,correoElectronico,direccion);
-
-            return cliente;
-
+            return new Cliente(cedula,nombres,apellidos,fecha,sexo,telefono,nombreContacto,
+                    telefonoContacto,correoElectronico,direccion);
         }catch (Exception ex){
             return null;
         }

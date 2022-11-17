@@ -23,7 +23,6 @@ public class SQLTable {
         //Fill the column names
 
         for(int i = 0 ; i < columnCount ; i++){
-            //System.out.println(metaData.getColumnName(i+1));
             columnNames[i] = metaData.getColumnName(i+1);
             columnIndex.put(columnNames[i], i);
         }

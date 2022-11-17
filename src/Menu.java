@@ -11,8 +11,7 @@ public class Menu {
     private boolean continueRunning;
     public Menu() {
         this.scanner = new Scanner(System.in);
-        String conexion = "jdbc:sqlite:gimnasio.db";
-        ConexionBaseDatos conexionBaseDatos = new ConexionBaseDatos(conexion);
+        ConexionBaseDatos conexionBaseDatos = new ConexionBaseDatos("jdbc:sqlite:gimnasio.db");
         this.controladorCliente = new ControladorCliente(conexionBaseDatos);
         this.continueRunning = true;
     }
