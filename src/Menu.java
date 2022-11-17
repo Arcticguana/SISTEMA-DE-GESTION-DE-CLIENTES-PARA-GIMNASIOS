@@ -1,6 +1,7 @@
 import basededatos.ConexionBaseDatos;
 import clientes.Cliente;
 import clientes.ControladorCliente;
+import clientes.excepciones.ErrorCedula;
 
 import java.util.Scanner;
 
@@ -48,6 +49,14 @@ public class Menu {
     private void mostrarRegistroCliente() {
         scanner = new Scanner(System.in);
         String cedula = leerEntrada("Cédula >>> ");
+        while (true){
+            try{
+                Cliente.validarCedula(cedula);
+                break;
+            }catch (ErrorCedula errorCedula){
+                System.out.println(errorCedula.getMessage());
+            }
+        }
         String nombres = leerEntrada("Nombres >>> ");
         String apellidos = leerEntrada("Apellidos >>> ");
         String fecha = leerEntrada("Fecha de nacimiento (dd-mm-aaaa)>>> ");
@@ -81,7 +90,16 @@ public class Menu {
     private void mostrarConsultaCliente() {
         scanner = new Scanner(System.in);
         String mensaje = "Ingresa la cédula del cliente que deseas consultar\nCédula >>> ";
-        String cedula = leerEntrada(mensaje);
+        String cedula = null;
+
+        try{
+            cedula = leerEntrada(mensaje);
+            Cliente.validarCedula(cedula);
+        }catch (ErrorCedula errorCedula){
+                System.out.println(errorCedula.getMessage());
+                return;
+        }
+
         Cliente cliente = controladorCliente.consultarCliente(cedula);
         if (cliente == null){
             System.out.println("Cliente no encontrado");
