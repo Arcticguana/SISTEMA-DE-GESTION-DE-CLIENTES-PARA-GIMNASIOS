@@ -16,9 +16,7 @@ public class ValidadorCedula {
      */
     public void validar(String cedula) throws ErrorCedula {
         validarCadenaVacia(cedula);
-        if(!cedula.matches("[0-9]+")){
-            throw new ErrorCedula("La cédula solo puede contener números");
-        }
+        validarSoloNumeros(cedula);
         //Si la longitud de la cédula es distinta a números
         if(cedula.length() != 10){
             throw new ErrorCedula("La cédula debe tener una longitud de 10 números, se encontraron " + cedula.length());
@@ -62,6 +60,15 @@ public class ValidadorCedula {
         }
     }
 
+    /**
+     * Revisa que la cadena contenga únicamente números
+     * @param cedula
+     */
+    private void validarSoloNumeros(String cedula) throws ErrorCedula {
+        if(!cedula.matches("[0-9]+")){
+            throw new ErrorCedula("La cédula solo puede contener números");
+        }
+    }
     /**
      * Se comprueba que la cadena que ingresa no está vacía
      * @param cedula
