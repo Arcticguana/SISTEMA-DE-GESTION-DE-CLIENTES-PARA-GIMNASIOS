@@ -30,17 +30,22 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public Cliente(String cedula, String nombres, String apellidos, String fecha, char sexo, String telefono, String nombreContacto, String telefonoContacto, String correoElectronico, String direccion) {
+    public Cliente(String cedula, String nombres, String apellidos, String fecha, char sexo, String telefono, String nombreContacto,
+                   String telefonoContacto, String correoElectronico, String direccion) {
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
-        this.fecha = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        this.fecha = stringALocalDate(fecha);
         this.sexo = sexo;
         this.telefono = telefono;
         this.nombreContacto = nombreContacto;
         this.telefonoContacto = telefonoContacto;
         this.correoElectronico = correoElectronico;
         this.direccion = direccion;
+    }
+
+    private static LocalDate stringALocalDate(String fecha) {
+        return LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
     public String getCedula() {
