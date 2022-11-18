@@ -20,33 +20,7 @@ public class ValidadorCedula {
         validarLongitud(cedula);
         validarPrimerosDigitos(cedula);
         validarTercerDigito(cedula);
-        //Se realiza el algoritmo de validación con la suma y el último dígito
-        int numValidacion = 0;
-        int sumaPar = 0;
-        int sumaImpar = 0;
-        int numero;
-        for(int i = 0; i < cedula.length() - 1; i++){
-            numero = Integer.parseInt(String.valueOf(cedula.charAt(i)));
-            if((i+1) % 2 != 0){//Si la posición es impar
-                numero *= 2;
-                if(numero > 9){
-                    numero -= 9;
-                }
-                sumaImpar += numero;
-            }else{
-                sumaPar += numero;
-            }
-        }
-        int modulo = (sumaPar + sumaImpar)%10;
-        if(modulo == 0) {
-            numValidacion = 0;
-        }else{
-            numValidacion = 10 - modulo;
-        }
-        int ultimoNumero = Integer.parseInt(String.valueOf(cedula.charAt(9)));
-        if (numValidacion != ultimoNumero){
-            throw new ErrorCedula("Error en el dígito validador: " + ultimoNumero);
-        }
+        validarDigitoVerificador(cedula);
     }
 
     /**
@@ -103,5 +77,33 @@ public class ValidadorCedula {
         }
     }
 
+    /**
+     * Si el último dígito de la cédula no es igual al valor calculado con el algoritmo de
+     * suma, entonces no es una cédula válida.
+     * @param cedula
+     * @throws ErrorCedula
+     */
+    private void validarDigitoVerificador(String cedula) throws ErrorCedula {
+        //Se realiza el algoritmo de validación con la suma y el último dígito
+        int numValidacion = 0, sumaPar = 0, sumaImpar = 0, numero;
+        for(int i = 0; i < cedula.length() - 1; i++){
+            numero = Integer.parseInt(String.valueOf(cedula.charAt(i)));
+            if((i+1) % 2 != 0){//Si la posición es impar
+                numero *= 2;
+                if(numero > 9){ numero -= 9;}
+                sumaImpar += numero;
+            }else{
+                sumaPar += numero;
+            }
+        }
+        int modulo = (sumaPar + sumaImpar) % 10;
+        if(modulo != 0) {
+            numValidacion = 10 - modulo;
+        }
+        int ultimoNumero = Integer.parseInt(String.valueOf(cedula.charAt(9)));
+        if (numValidacion != ultimoNumero){
+            throw new ErrorCedula("Error en el dígito validador: " + ultimoNumero);
+        }
+    }
 
 }
