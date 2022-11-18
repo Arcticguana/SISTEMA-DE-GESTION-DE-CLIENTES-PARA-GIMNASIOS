@@ -2,6 +2,8 @@ package clientes;
 
 import basededatos.ConexionBaseDatos;
 import basededatos.SQLTable;
+import clientes.excepciones.ErrorCedula;
+import validacion.ValidadorCedula;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -18,7 +20,7 @@ public class ControladorCliente {
         this.conexion = conexion;
     }
 
-    public void registrarCliente(Cliente cliente){
+    public void registrarCliente(Cliente cliente) throws Exception{
 
        String cedula = cliente.getCedula();
        String nombres = cliente.getNombres();
@@ -37,12 +39,14 @@ public class ControladorCliente {
        try{
            conexion.ejecutarSentencia(sentencia);
        }catch (SQLException ex){
-           System.out.println(ex.getMessage());
+           throw new Exception("El sistema no pudo registral al cliente");
        }
 
     }
 
-    public Cliente consultarCliente(String cedula){
+    public Cliente consultarCliente(String cedula) throws Exception {
+        ValidadorCedula validadorCedula = new ValidadorCedula();
+        validadorCedula.validar(cedula);
         try{
             SQLTable resultado = conexion.realizarConsulta("select * from clientes where cedula="+cedula);
             String nombres = resultado.getValueAt(0,"nombres");
@@ -58,8 +62,8 @@ public class ControladorCliente {
 
             return new Cliente(cedula,nombres,apellidos,fecha,sexo,telefono,nombreContacto,
                     telefonoContacto,correoElectronico,direccion);
-        }catch (Exception ex){
-            return null;
+        }catch (SQLException ex){
+            throw new Exception("El sistema realizar la consulta");
         }
     }
 }
