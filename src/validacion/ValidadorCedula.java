@@ -19,11 +19,7 @@ public class ValidadorCedula {
         validarSoloNumeros(cedula);
         validarLongitud(cedula);
         validarPrimerosDigitos(cedula);
-        //Se revisa que el tercer dígito no sea mayor o igual a 6
-        int tercerDigito = Integer.parseInt(String.valueOf(cedula.charAt(2)));
-        if (tercerDigito >= 6){
-            throw new ErrorCedula("Error en el tercer dígito: " + tercerDigito);
-        }
+        validarTercerDigito(cedula);
         //Se realiza el algoritmo de validación con la suma y el último dígito
         int numValidacion = 0;
         int sumaPar = 0;
@@ -95,5 +91,17 @@ public class ValidadorCedula {
             throw new ErrorCedula("Error en los primeros dígitos de la cédula: " + primeros);
         }
     }
+
+    /**
+     * Si el tercer dígito es mayor o igual que 6 entonces la cédula no es válida
+     * @param cedula
+     */
+    private void validarTercerDigito(String cedula) throws ErrorCedula {
+        int tercerDigito = Integer.parseInt(String.valueOf(cedula.charAt(2)));
+        if (tercerDigito >= 6){
+            throw new ErrorCedula("Error en el tercer dígito: " + tercerDigito);
+        }
+    }
+
 
 }
