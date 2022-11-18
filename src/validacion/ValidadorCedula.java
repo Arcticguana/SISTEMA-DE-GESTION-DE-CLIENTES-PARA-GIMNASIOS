@@ -17,10 +17,7 @@ public class ValidadorCedula {
     public void validar(String cedula) throws ErrorCedula {
         validarCadenaVacia(cedula);
         validarSoloNumeros(cedula);
-        //Si la longitud de la cédula es distinta a números
-        if(cedula.length() != 10){
-            throw new ErrorCedula("La cédula debe tener una longitud de 10 números, se encontraron " + cedula.length());
-        }
+        validarLongitud(cedula);
         //Se revisa que los primeros números estén entre 1 y 24
         int primeros = Integer.parseInt(cedula.substring(0,2));
         if (primeros > 24 || primeros < 1){
@@ -77,6 +74,16 @@ public class ValidadorCedula {
     private void validarCadenaVacia(String cedula) throws ErrorCedula {
         if (cedula.length() == 0) {
             throw new ErrorCedula("La cédula no puede estar vacía");
+        }
+    }
+    /**
+     * Comprueba si la longitud de la cadena es 10
+     * @param cedula
+     * @throws ErrorCedula
+     */
+    private void validarLongitud(String cedula) throws ErrorCedula {
+        if(cedula.length() != 10){
+            throw new ErrorCedula("La cédula debe tener una longitud de 10 números, se encontraron " + cedula.length());
         }
     }
 
