@@ -15,6 +15,7 @@ public class ValidadorCedula {
      * @throws ErrorCedula
      */
     public void validar(String cedula) throws ErrorCedula {
+        validarCadenaVacia(cedula);
         if(!cedula.matches("[0-9]+")){
             throw new ErrorCedula("La cédula solo puede contener números");
         }
