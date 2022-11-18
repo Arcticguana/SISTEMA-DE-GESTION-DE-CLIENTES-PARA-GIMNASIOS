@@ -18,11 +18,7 @@ public class ValidadorCedula {
         validarCadenaVacia(cedula);
         validarSoloNumeros(cedula);
         validarLongitud(cedula);
-        //Se revisa que los primeros números estén entre 1 y 24
-        int primeros = Integer.parseInt(cedula.substring(0,2));
-        if (primeros > 24 || primeros < 1){
-            throw new ErrorCedula("Error en los primeros dígitos de la cédula: " + primeros);
-        }
+        validarPrimerosDigitos(cedula);
         //Se revisa que el tercer dígito no sea mayor o igual a 6
         int tercerDigito = Integer.parseInt(String.valueOf(cedula.charAt(2)));
         if (tercerDigito >= 6){
@@ -84,6 +80,19 @@ public class ValidadorCedula {
     private void validarLongitud(String cedula) throws ErrorCedula {
         if(cedula.length() != 10){
             throw new ErrorCedula("La cédula debe tener una longitud de 10 números, se encontraron " + cedula.length());
+        }
+    }
+
+    /**
+     * Si es que los primeros dígitos no están entre 1 y 24 entonces la cédula no es válida.
+     * @param cedula
+     */
+    private void validarPrimerosDigitos(String cedula) throws ErrorCedula {
+        //Se revisa que los primeros números estén entre 1 y 24
+        int primeros = Integer.parseInt(cedula.substring(0,2));
+
+        if (primeros > 24 || primeros < 1){
+            throw new ErrorCedula("Error en los primeros dígitos de la cédula: " + primeros);
         }
     }
 
