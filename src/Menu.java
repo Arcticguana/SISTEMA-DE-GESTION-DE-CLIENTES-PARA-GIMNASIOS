@@ -77,12 +77,14 @@ public class Menu {
                 correoElectronico,
                 direccion
         );
-        controladorCliente.registrarCliente(cliente);
-        if (controladorCliente.consultarCliente(cliente.getCedula()) == null) {
-            System.out.println("No se pudo registrar al cliente, error del sistema");
-        }else {
+        try {
+            controladorCliente.registrarCliente(cliente);
             System.out.println("Cliente registrado exitosamente");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
+
+
 
     }
 
@@ -99,7 +101,12 @@ public class Menu {
                 return;
         }
 
-        Cliente cliente = controladorCliente.consultarCliente(cedula);
+        Cliente cliente = null;
+        try {
+            cliente = controladorCliente.consultarCliente(cedula);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         if (cliente == null){
             System.out.println("Cliente no encontrado");
             return;
